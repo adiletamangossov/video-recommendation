@@ -34,8 +34,22 @@ Content based рекомендации «Похожее» для каталог�
 
 ## Запуск
 
+Нужны Python 3.11 или новее и git.
+
+Windows:
+
+    git clone https://github.com/adiletamangossov/video-recommendation.git
+    cd video-recommendation
+    python -m venv .venv
+    .venv\Scripts\activate
     pip install -r requirements.txt
-    python -m video_recsys.run --env prod --input catalog.csv --out out
+    python -m video_recsys.run --env prod --input путь\к\catalog.csv --out out
+
+Linux / macOS: то же самое, только окружение активируется командой `source .venv/bin/activate`.
+
+- Файл каталога в репозиторий не входит, его нужно положить отдельно. Подойдёт любой путь; CSV с разделителем `$` или `;` читается без настроек.
+- `--env` бывает `prod` или `dev`, это только суффикс в именах файлов.
+- Версии в `requirements.txt` закреплены. Если какая-то не ставится под вашу версию Python, поставьте без версий: `pip install numpy pandas scipy scikit-learn openpyxl`.
 
 На выходе:
 - `recs_{env}_with_episodes.csv`: колонки `content_type, content_id, similar_content_type, similar_content_id, rank, score`;
